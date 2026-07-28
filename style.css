@@ -463,7 +463,7 @@ input[type="tel"] {
   font-family: inherit;
   font-size: var(--fs-field);
   transition: border-color var(--ease), background var(--ease), box-shadow var(--ease);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 input[type="text"]:hover,
