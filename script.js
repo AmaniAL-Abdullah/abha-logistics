@@ -146,7 +146,7 @@ function goNext() {
   });
 
   restartBtn.addEventListener("click", () => {
-    location.reload();
+    window.location.replace(window.location.pathname);
   });
 
   const hero = document.querySelector(".hero");
@@ -179,11 +179,5 @@ function goNext() {
 
 
 window.addEventListener("popstate", exitSurvey);
-
-// إذا تم فتح الرابط مباشرة على #form-card
-if (window.location.hash === "#form-card") {
-  hero.classList.add("is-hidden");
-  window.scrollTo(0, 0);
-}
 
 renderStep();
