@@ -670,8 +670,8 @@ textarea:focus {
 .error-message {
   visibility: hidden;
   color: #dc2626;
-  margin-top: 12px;
-  font-size: 14px;
+  margin-top: 4px;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.4;
   min-height: 1.4em;
