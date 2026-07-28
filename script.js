@@ -22,6 +22,8 @@
     totalStepEl.textContent = steps.length;
   }
 function goNext() {
+  if (document.activeElement) document.activeElement.blur();
+
   const current = steps[currentStep];
   const error = current.querySelector(".error-message");
 
