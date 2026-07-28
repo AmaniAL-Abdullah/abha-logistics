@@ -1,8 +1,6 @@
 (function () {
   "use strict";
-  if (window.location.hash === "#form-card") {
-  history.replaceState(null, "", window.location.pathname);
-}
+  
   const form = document.getElementById("form");
   const steps = Array.from(document.querySelectorAll(".step"));
   const progressBar = document.querySelector(".progress-bar");
