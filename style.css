@@ -1295,3 +1295,56 @@ textarea:focus{
 #form-card{
     scroll-margin-top:60px;
 }
+
+/* ===============================
+   Laptop Optimization
+================================ */
+
+@media (max-width: 1600px){
+
+    .hero-card{
+        width:min(1100px,90vw);
+        padding:45px 60px;
+    }
+
+    .hero-logo{
+        width:300px;
+    }
+
+    .hero h1{
+        font-size:64px;
+    }
+
+    .hero p{
+        font-size:22px;
+    }
+
+    .badge{
+        font-size:15px;
+        padding:14px 28px;
+    }
+
+    .stat{
+        height:76px;
+        font-size:17px;
+        padding:16px 20px;
+    }
+
+    .step{
+        padding:45px;
+    }
+
+    .step h3{
+        font-size:42px;
+    }
+
+    .option-card span{
+        font-size:20px !important;
+        height:72px;
+    }
+
+    textarea,
+    .input-group input{
+        font-size:20px;
+    }
+}
