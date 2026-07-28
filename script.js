@@ -1,79 +1,176 @@
-const steps = document.querySelectorAll(".step");
-const nextBtns = document.querySelectorAll(".next");
-const prevBtns = document.querySelectorAll(".prev");
-const progress = document.querySelector(".progress-bar");
+(function () {
+  "use strict";
 
-let currentStep = 0;
+  const form = document.getElementById("form");
+  const steps = Array.from(document.querySelectorAll(".step"));
+  const progressBar = document.querySelector(".progress-bar");
+  const currentStepEl = document.getElementById("current-step");
+  const totalStepEl = document.getElementById("total-step");
 
-function updateForm() {
+  let currentStep = 0;
 
+  function renderStep() {
     steps.forEach((step, index) => {
-        step.classList.toggle("active", index === currentStep);
+      step.classList.toggle("active", index === currentStep);
     });
 
-    const percent = ((currentStep + 1) / steps.length) * 100;
+    const percent = Math.round(((currentStep + 1) / steps.length) * 100);
 
-    progress.style.width = percent + "%";
+    progressBar.style.width = percent + "%";
+    progressBar.setAttribute("aria-valuenow", String(percent));
+    currentStepEl.textContent = currentStep + 1;
+    totalStepEl.textContent = steps.length;
+  }
+function goNext() {
+  const current = steps[currentStep];
+  const error = current.querySelector(".error-message");
 
-    document.getElementById("current-step").textContent = currentStep + 1;
-    document.getElementById("total-step").textContent = steps.length;
+  if (error) {
+    error.classList.remove("show");
+    error.textContent = "";
+  }
+
+  current.querySelectorAll(".input-error").forEach(el => {
+    el.classList.remove("input-error");
+  });
+
+  // التحقق من الحقول النصية
+  const textFields = current.querySelectorAll("input[type='text'], textarea");
+
+  for (const field of textFields) {
+    if (field.offsetParent === null) continue;
+
+    if (field.value.trim() === "") {
+      field.classList.add("input-error");
+
+      if (error) {
+        error.textContent = "يرجى تعبئة هذا الحقل.";
+        error.classList.add("show");
+      }
+
+      field.focus();
+      return;
+    }
+  }
+
+  // التحقق من أسئلة الاختيار (Radio)
+  const radios = current.querySelectorAll("input[type='radio']");
+  if (radios.length) {
+    const radioName = radios[0].name;
+
+    if (!current.querySelector(`input[name="${radioName}"]:checked`)) {
+      if (error) {
+        error.textContent = "يرجى اختيار أحد الخيارات.";
+        error.classList.add("show");
+      }
+      return;
+    }
+  }
+
+  // التحقق من أسئلة الاختيار المتعدد (Checkbox)
+  const checkboxes = current.querySelectorAll("input[type='checkbox']");
+  if (checkboxes.length) {
+    const checked = current.querySelectorAll("input[type='checkbox']:checked");
+
+    if (checked.length === 0) {
+      if (error) {
+        error.textContent = "يرجى اختيار خيار واحد على الأقل.";
+        error.classList.add("show");
+      }
+      return;
+    }
+  }
+
+  currentStep++;
+  renderStep();
 }
 
-nextBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
+  function goPrev() {
+    if (currentStep > 0) {
+      currentStep--;
+      renderStep();
+    }
+  }
 
-        const input = steps[currentStep].querySelector("input, select");
+  form.addEventListener("click", (event) => {
+    if (event.target.closest(".next")) {
+      goNext();
+    } else if (event.target.closest(".prev")) {
+      goPrev();
+    }
+  });
 
-        if (input && input.value.trim() === "") {
-            input.focus();
-            return;
-        }
+  function wireOtherToggle(radioId, boxId) {
+    const radio = document.getElementById(radioId);
+    const box = document.getElementById(boxId);
 
-        if (currentStep < steps.length - 1) {
-            currentStep++;
-            updateForm();
-        }
+    if (!radio || !box) return;
 
+    document.querySelectorAll(`input[name="${radio.name}"]`).forEach((input) => {
+      input.addEventListener("change", () => {
+        box.hidden = !radio.checked;
+      });
     });
-});
+  }
 
-prevBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
+  wireOtherToggle("otherActivity", "otherActivityBox");
+  wireOtherToggle("otherChallenge", "otherChallengeBox");
+  wireOtherToggle("otherAuthority", "otherAuthorityBox");
 
-        if (currentStep > 0) {
-            currentStep--;
-            updateForm();
-        }
+  function limitCheckboxGroup(name, max) {
+    const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
 
-    });
-});
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        const checkedCount = document.querySelectorAll(`input[name="${name}"]:checked`).length;
 
-updateForm();
-document.addEventListener("DOMContentLoaded", () => {
-
-    const otherRadio = document.getElementById("otherActivity");
-    const otherBox = document.getElementById("otherActivityBox");
-
-    document.querySelectorAll('input[name="activity"]').forEach((radio) => {
-
-        radio.addEventListener("change", function () {
-
-            console.log("تم اختيار:", this.id);
-
-            if (this.id === "otherActivity") {
-                otherBox.style.display = "block";
-            } else {
-                otherBox.style.display = "none";
-            }
-
+        checkboxes.forEach((box) => {
+          box.disabled = !box.checked && checkedCount >= max;
         });
-
+      });
     });
+  }
 
-});
-const submitBtn = document.getElementById("submitBtn");
+  limitCheckboxGroup("challenges", 5);
 
-submitBtn.addEventListener("click", function () {
-    document.getElementById("form-card").style.display = "none";
-    document.getElementById("thankYou").style.display = "flex";
-});
+  const submitBtn = document.getElementById("submitBtn");
+  const thankYou = document.getElementById("thankYou");
+  const restartBtn = document.getElementById("restartBtn");
+  const formCard = document.getElementById("form-card");
+
+  submitBtn.addEventListener("click", () => {
+    formCard.style.display = "none";
+    thankYou.classList.add("active");
+  });
+
+  restartBtn.addEventListener("click", () => {
+    location.reload();
+  });
+
+  const hero = document.querySelector(".hero");
+  const startBtn = document.querySelector(".hero-btn");
+
+  function enterSurvey() {
+    hero.classList.add("is-hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    history.pushState({ survey: true }, "", "#form-card");
+  }
+
+  function exitSurvey() {
+    hero.classList.remove("is-hidden");
+    formCard.style.display = "";
+    thankYou.classList.remove("active");
+    currentStep = 0;
+    renderStep();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  startBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    enterSurvey();
+  });
+
+  window.addEventListener("popstate", exitSurvey);
+
+  renderStep();
+})();
