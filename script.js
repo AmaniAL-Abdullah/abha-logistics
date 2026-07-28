@@ -176,3 +176,14 @@ function goNext() {
 
   renderStep();
 })();
+
+
+window.addEventListener("popstate", exitSurvey);
+
+// إذا تم فتح الرابط مباشرة على #form-card
+if (window.location.hash === "#form-card") {
+  hero.classList.add("is-hidden");
+  window.scrollTo(0, 0);
+}
+
+renderStep();
