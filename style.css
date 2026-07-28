@@ -463,7 +463,7 @@ input[type="tel"] {
   font-family: inherit;
   font-size: var(--fs-field);
   transition: border-color var(--ease), background var(--ease), box-shadow var(--ease);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 input[type="text"]:hover,
@@ -666,19 +666,19 @@ textarea:focus {
     animation-duration: 0.01ms !important;
   }
 }
-
 .error-message {
-  visibility: hidden;
+  display: none;
   color: #dc2626;
-  margin-top: 4px;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.4;
-  min-height: 1.4em;
+  line-height: 1.3;
+  margin-top: 6px;
+  margin-bottom: 0;
+  text-align: right;
 }
 
 .error-message.show {
-  visibility: visible;
+  display: block;
 }
 
 .input-error {
