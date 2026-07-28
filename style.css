@@ -657,7 +657,7 @@ backdrop-filter:blur(2px);
 
 
 .hero-logo{
-        width: 400px;
+        width: 300px;
 
     height: auto;
 
@@ -668,13 +668,13 @@ backdrop-filter:blur(2px);
 
 .hero h1{
 
-    font-size:84px;
+    font-size:68px;
 
     line-height: 1.15;
 
     font-weight:900;
 
-    max-width:900px;
+    max-width:800px;
 
     margin-bottom: 28px;
 
@@ -682,7 +682,7 @@ backdrop-filter:blur(2px);
 
 .hero p{
 
-    font-size: 24px;
+    font-size: 22px;
 
     font-weight: 400;
 
@@ -708,7 +708,7 @@ backdrop-filter:blur(2px);
 
     min-width:240px;
 
-    height: 68px;
+    height: 60px;
 
     background:#fff !important;
 
@@ -718,7 +718,7 @@ backdrop-filter:blur(2px);
 
     border-radius:999px;
 
-    font-size:24px;
+    font-size:22px;
 
     font-weight:700;
 
@@ -814,11 +814,11 @@ margin:auto;
 
 .hero-card{
 
-    width:min(1350px,88vw);
+    width:min(1100px,90vw);
 
-    min-height:640px;
+    min-height:auto;
 
-    padding:50px 90px 55px;
+    padding:45px 60px;
 
     border-radius:42px;
 
@@ -857,7 +857,7 @@ margin-bottom: 28px;
 
 .stat{
 
-height:92px;
+height:76px;
 
 padding: 18px 28px;
 
@@ -873,7 +873,7 @@ align-items:center;
 
 justify-content:center;
 
-font-size:19px;
+font-size:17px;
 
 
 font-weight:700;
@@ -1290,4 +1290,8 @@ textarea:focus{
     letter-spacing:.3px;
 
     line-height:1.6;
+}
+
+#form-card{
+    scroll-margin-top:60px;
 }
