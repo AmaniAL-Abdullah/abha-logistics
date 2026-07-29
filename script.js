@@ -22,8 +22,6 @@
     totalStepEl.textContent = steps.length;
   }
 function goNext() {
-  if (document.activeElement) document.activeElement.blur();
-
   const current = steps[currentStep];
   const error = current.querySelector(".error-message");
 
@@ -55,33 +53,6 @@ function goNext() {
     }
   }
 
-  // التحقق من أسئلة الاختيار (Radio)
-  const radios = current.querySelectorAll("input[type='radio']");
-  if (radios.length) {
-    const radioName = radios[0].name;
-
-    if (!current.querySelector(`input[name="${radioName}"]:checked`)) {
-      if (error) {
-        error.textContent = "يرجى اختيار أحد الخيارات.";
-        error.classList.add("show");
-      }
-      return;
-    }
-  }
-
-  // التحقق من أسئلة الاختيار المتعدد (Checkbox)
-  const checkboxes = current.querySelectorAll("input[type='checkbox']");
-  if (checkboxes.length) {
-    const checked = current.querySelectorAll("input[type='checkbox']:checked");
-
-    if (checked.length === 0) {
-      if (error) {
-        error.textContent = "يرجى اختيار خيار واحد على الأقل.";
-        error.classList.add("show");
-      }
-      return;
-    }
-  }
 
   currentStep++;
   renderStep();
@@ -177,7 +148,3 @@ function goNext() {
   renderStep();
 })();
 
-
-window.addEventListener("popstate", exitSurvey);
-
-renderStep();
