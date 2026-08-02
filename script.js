@@ -144,6 +144,30 @@ function goNext() {
         field.focus();
         return;
       }
+
+      if (field.type === "email" && !field.checkValidity()) {
+        field.classList.add("input-error");
+
+        if (error) {
+          error.textContent = "يرجى إدخال بريد إلكتروني صحيح.";
+          error.classList.add("show");
+        }
+
+        field.focus();
+        return;
+      }
+
+      if (field.type === "tel" && !/^05\d{8}$/.test(field.value.trim())) {
+        field.classList.add("input-error");
+
+        if (error) {
+          error.textContent = "يرجى إدخال رقم جوال يبدأ بـ 05 ويتكون من 10 أرقام.";
+          error.classList.add("show");
+        }
+
+        field.focus();
+        return;
+      }
     }
 
     formCard.style.display = "none";

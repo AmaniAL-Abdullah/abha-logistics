@@ -146,6 +146,14 @@
               <span>ضعف التحول الرقمي</span>
             </label>
             <label class="option-card">
+              <input type="checkbox" name="challenges" value="warehouses">
+              <span>المستودعات</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="challenges" value="logistics-centers">
+              <span>المراكز اللوجستية</span>
+            </label>
+            <label class="option-card">
               <input type="checkbox" name="challenges" value="other" id="otherChallenge" >
               <span>أخرى</span>
             </label>
@@ -440,23 +448,8 @@
       </div>
 
       <div class="step">
-        <fieldset>
-          <legend>ما التحديات التي ترى أن اللجنة اللوجستية يجب أن تبدأ بمعالجتها بشكل عاجل؟</legend>
-          <div class="options-grid">
-            <label class="option-card">
-              <input type="radio" name="committeePriorities" value="high">
-              <span>عالي</span>
-            </label>
-            <label class="option-card">
-              <input type="radio" name="committeePriorities" value="medium">
-              <span>متوسط</span>
-            </label>
-            <label class="option-card">
-              <input type="radio" name="committeePriorities" value="low">
-              <span>منخفض</span>
-            </label>
-          </div>
-        </fieldset>
+        <h3 id="committeePriorities-label">ما التحديات التي ترى أن اللجنة اللوجستية يجب أن تبدأ بمعالجتها بشكل عاجل؟</h3>
+        <textarea name="committeePriorities" rows="6" aria-labelledby="committeePriorities-label" placeholder="اكتب إجابتك هنا..." required></textarea>
         <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
@@ -468,15 +461,19 @@
           <div class="options-grid">
             <label class="option-card">
               <input type="radio" name="impactLevel" value="high">
-              <span>تأثير مرتفع</span>
+              <span>عالي</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="impactLevel" value="medium">
+              <span>متوسط</span>
             </label>
             <label class="option-card">
               <input type="radio" name="impactLevel" value="low">
-              <span>تأثير منخفض</span>
+              <span>منخفض</span>
             </label>
           </div>
         </fieldset>
-                <button type="button" class="next">التالي <span class="arrow">›</span></button>
+        <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
 

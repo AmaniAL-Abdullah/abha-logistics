@@ -453,7 +453,8 @@ img {
 }
 
 input[type="text"],
-input[type="tel"] {
+input[type="tel"],
+input[type="email"] {
   width: 100%;
   min-height: calc(clamp(60px, 53.14px + 1.829vmin, 76px) * 0.7);
   border: 2px solid var(--color-border);
@@ -467,12 +468,14 @@ input[type="tel"] {
 }
 
 input[type="text"]:hover,
-input[type="tel"]:hover {
+input[type="tel"]:hover,
+input[type="email"]:hover {
   border-color: var(--color-border-hover);
 }
 
 input[type="text"]:focus,
-input[type="tel"]:focus {
+input[type="tel"]:focus,
+input[type="email"]:focus {
   outline: none;
   border-color: var(--color-primary);
   background: #fff;
@@ -482,6 +485,16 @@ input[type="tel"]:focus {
 input::placeholder,
 textarea::placeholder {
   color: var(--color-placeholder);
+}
+
+input[type="tel"] {
+  direction: rtl;
+  text-align: right;
+}
+
+input[type="tel"]::placeholder {
+  direction: rtl;
+  text-align: right;
 }
 
 textarea {
@@ -687,6 +700,7 @@ textarea:focus {
 @media screen and (max-width: 768px) {
   input[type="text"],
   input[type="tel"],
+  input[type="email"],
   textarea {
     font-size: 16px;
   }
