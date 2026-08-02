@@ -35,7 +35,7 @@ function goNext() {
   });
 
   // التحقق من الحقول النصية
-  const textFields = current.querySelectorAll("input[type='text'], textarea");
+  const textFields = current.querySelectorAll("input[type='text'], input[type='tel'], input[type='email'], textarea");
 
   for (const field of textFields) {
     if (field.offsetParent === null) continue;
@@ -89,6 +89,10 @@ function goNext() {
   wireOtherToggle("otherActivity", "otherActivityBox");
   wireOtherToggle("otherChallenge", "otherChallengeBox");
   wireOtherToggle("otherAuthority", "otherAuthorityBox");
+  wireOtherToggle("recruitmentDifficultyNo", "recruitmentDifficultyReasonBox");
+  wireOtherToggle("infrastructureServesSectorNo", "infrastructureServesSectorReasonBox");
+  wireOtherToggle("warehouseLandDifficultyNo", "warehouseLandDifficultyReasonBox");
+  wireOtherToggle("digitalSystemsMeetNeedsNo", "digitalSystemsMeetNeedsReasonBox");
 
   function limitCheckboxGroup(name, max) {
     const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
@@ -112,6 +116,36 @@ function goNext() {
   const formCard = document.getElementById("form-card");
 
   submitBtn.addEventListener("click", () => {
+    const current = steps[currentStep];
+    const error = current.querySelector(".error-message");
+
+    if (error) {
+      error.classList.remove("show");
+      error.textContent = "";
+    }
+
+    current.querySelectorAll(".input-error").forEach(el => {
+      el.classList.remove("input-error");
+    });
+
+    const requiredFields = current.querySelectorAll("input[type='text'], input[type='tel'], input[type='email'], textarea");
+
+    for (const field of requiredFields) {
+      if (field.offsetParent === null) continue;
+
+      if (field.value.trim() === "") {
+        field.classList.add("input-error");
+
+        if (error) {
+          error.textContent = "يرجى تعبئة هذا الحقل.";
+          error.classList.add("show");
+        }
+
+        field.focus();
+        return;
+      }
+    }
+
     formCard.style.display = "none";
     thankYou.classList.add("active");
   });

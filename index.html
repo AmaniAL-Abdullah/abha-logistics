@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://abha-logistics.vercel.app/assets/og-image.png">
 <meta property="og:url" content="https://abha-logistics.vercel.app/">
 <meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/log.svg">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -125,10 +126,6 @@
               <span>نقص الكفاءات البشرية</span>
             </label>
             <label class="option-card">
-              <input type="checkbox" name="challenges" value="hiring-difficulty">
-              <span>صعوبة التوظيف</span>
-            </label>
-            <label class="option-card">
               <input type="checkbox" name="challenges" value="weak-infrastructure">
               <span>ضعف البنية التحتية</span>
             </label>
@@ -137,16 +134,12 @@
               <span>التراخيص والإجراءات الحكومية</span>
             </label>
             <label class="option-card">
-              <input type="checkbox" name="challenges" value="high-rents">
-              <span>ارتفاع الإيجارات</span>
+              <input type="checkbox" name="challenges" value="safety-challenges">
+              <span>تحديات السلامة</span>
             </label>
             <label class="option-card">
-              <input type="checkbox" name="challenges" value="lack-of-warehouses">
-              <span>قلة المستودعات</span>
-            </label>
-            <label class="option-card">
-              <input type="checkbox" name="challenges" value="high-transport-prices">
-              <span>ارتفاع أسعار النقل</span>
+              <input type="checkbox" name="challenges" value="seasonal-operational-pressure">
+              <span>الضغط التشغيلي في المواسم</span>
             </label>
             <label class="option-card">
               <input type="checkbox" name="challenges" value="weak-digital-transformation">
@@ -168,14 +161,6 @@
       </div>
 
       <div class="step">
-        <h3 id="biggestChallenge-label">ما أكبر تحدٍ يواجه منشأتك حالياً؟</h3>
-        <textarea name="biggestChallenge" rows="6" aria-labelledby="biggestChallenge-label" placeholder="اكتب إجابتك هنا..." required ></textarea>
-        <p class="error-message"></p>
-        <button type="button" class="next">التالي <span class="arrow">›</span></button>
-        <button type="button" class="prev"><span class="arrow">›</span> السابق</button>
-      </div>
-
-      <div class="step">
         <fieldset>
           <legend>ما أكثر جهة تواجه معها تحديات في الإجراءات؟</legend>
           <p class="hint">يمكن اختيار أكثر من إجابة</p>
@@ -193,6 +178,14 @@
               <span>وزارة الموارد البشرية</span>
             </label>
             <label class="option-card">
+              <input type="checkbox" name="authority" value="traffic-department">
+              <span>المرور</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="authority" value="water-authority">
+              <span>الهيئة السعودية للمياه</span>
+            </label>
+            <label class="option-card">
               <input type="checkbox" name="authority" value="other" id="otherAuthority">
               <span>أخرى</span>
             </label>
@@ -208,36 +201,46 @@
 
       <div class="step">
         <fieldset>
-          <legend>هل تواجه صعوبة في استقطاب الكفاءات؟</legend>
+          <legend>هل تواجه صعوبة في استقطاب الكفاءات البشرية؟</legend>
           <div class="options-grid">
             <label class="option-card">
               <input type="radio" name="recruitmentDifficulty" value="yes">
               <span>نعم</span>
             </label>
             <label class="option-card">
-              <input type="radio" name="recruitmentDifficulty" value="no">
+              <input type="radio" name="recruitmentDifficulty" value="no" id="recruitmentDifficultyNo">
               <span>لا</span>
             </label>
           </div>
         </fieldset>
+
+        <div id="recruitmentDifficultyReasonBox" hidden>
+          <label for="recruitmentDifficultyReasonInput" class="visually-hidden">السبب</label>
+          <input type="text" id="recruitmentDifficultyReasonInput" placeholder="اذكر السبب">
+        </div>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
 
       <div class="step">
         <fieldset>
-          <legend>هل البنية التحتية الحالية تخدم احتياجات القطاع؟</legend>
+          <legend>هل تلبي البنية التحتية الحالية احتياجات منشأتك؟</legend>
           <div class="options-grid">
             <label class="option-card">
               <input type="radio" name="infrastructureServesSector" value="yes">
               <span>نعم</span>
             </label>
             <label class="option-card">
-              <input type="radio" name="infrastructureServesSector" value="no">
+              <input type="radio" name="infrastructureServesSector" value="no" id="infrastructureServesSectorNo">
               <span>لا</span>
             </label>
           </div>
         </fieldset>
+
+        <div id="infrastructureServesSectorReasonBox" hidden>
+          <label for="infrastructureServesSectorReasonInput" class="visually-hidden">السبب</label>
+          <input type="text" id="infrastructureServesSectorReasonInput" placeholder="اذكر السبب">
+        </div>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -279,18 +282,23 @@
 
       <div class="step">
         <fieldset>
-          <legend>هل تواجه صعوبة في الحصول على مستودعات أو أراضٍ تشغيلية؟</legend>
+          <legend>هل تواجه صعوبة في الحصول على مستودعات أو أراض تشغيلية؟</legend>
           <div class="options-grid">
             <label class="option-card">
               <input type="radio" name="warehouseLandDifficulty" value="yes">
               <span>نعم</span>
             </label>
             <label class="option-card">
-              <input type="radio" name="warehouseLandDifficulty" value="no">
+              <input type="radio" name="warehouseLandDifficulty" value="no" id="warehouseLandDifficultyNo">
               <span>لا</span>
             </label>
           </div>
         </fieldset>
+
+        <div id="warehouseLandDifficultyReasonBox" hidden>
+          <label for="warehouseLandDifficultyReasonInput" class="visually-hidden">السبب</label>
+          <input type="text" id="warehouseLandDifficultyReasonInput" placeholder="اذكر السبب">
+        </div>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -327,14 +335,6 @@
       </div>
 
       <div class="step">
-        <h3 id="ecommerceChallenges-label">ما أبرز تحديات التجارة الإلكترونية المرتبطة بالخدمات اللوجستية؟</h3>
-        <textarea name="ecommerceChallenges" rows="6" aria-labelledby="ecommerceChallenges-label" placeholder="اكتب إجابتك هنا..." required></textarea>
-        <p class="error-message"></p>
-        <button type="button" class="next">التالي <span class="arrow">›</span></button>
-        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
-      </div>
-
-      <div class="step">
         <fieldset>
           <legend>هل الأنظمة الرقمية الحالية تلبي احتياج منشأتك؟</legend>
           <div class="options-grid">
@@ -343,11 +343,16 @@
               <span>نعم</span>
             </label>
             <label class="option-card">
-              <input type="radio" name="digitalSystemsMeetNeeds" value="no">
+              <input type="radio" name="digitalSystemsMeetNeeds" value="no" id="digitalSystemsMeetNeedsNo">
               <span>لا</span>
             </label>
           </div>
         </fieldset>
+
+        <div id="digitalSystemsMeetNeedsReasonBox" hidden>
+          <label for="digitalSystemsMeetNeedsReasonInput" class="visually-hidden">السبب</label>
+          <input type="text" id="digitalSystemsMeetNeedsReasonInput" placeholder="اذكر السبب">
+        </div>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -411,6 +416,22 @@
       </div>
 
       <div class="step">
+        <h3 id="biggestChallenge-label">ما أكبر تحدٍ يواجه منشأتك حالياً؟</h3>
+        <textarea name="biggestChallenge" rows="6" aria-labelledby="biggestChallenge-label" placeholder="اكتب إجابتك هنا..." required ></textarea>
+        <p class="error-message"></p>
+        <button type="button" class="next">التالي <span class="arrow">›</span></button>
+        <button type="button" class="prev"><span class="arrow">›</span> السابق</button>
+      </div>
+
+      <div class="step">
+        <h3 id="ecommerceChallenges-label">ما أبرز تحديات التجارة الإلكترونية المرتبطة بالخدمات اللوجستية؟</h3>
+        <textarea name="ecommerceChallenges" rows="6" aria-labelledby="ecommerceChallenges-label" placeholder="اكتب إجابتك هنا..." required></textarea>
+        <p class="error-message"></p>
+        <button type="button" class="next">التالي <span class="arrow">›</span></button>
+        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
+      </div>
+
+      <div class="step">
         <h3 id="southChallenges-label">ما التحديات التي تعيق نمو القطاع اللوجستي في المنطقة الجنوبية؟</h3>
         <textarea name="southChallenges" rows="6" aria-labelledby="southChallenges-label" placeholder="اكتب إجابتك هنا..." required></textarea>
         <p class="error-message"></p>
@@ -419,8 +440,23 @@
       </div>
 
       <div class="step">
-        <h3 id="committeePriorities-label">ما التحديات التي ترى أن اللجنة اللوجستية يجب أن تبدأ بمعالجتها بشكل عاجل؟</h3>
-        <textarea name="committeePriorities" rows="6" aria-labelledby="committeePriorities-label" placeholder="اكتب إجابتك هنا..." required></textarea>
+        <fieldset>
+          <legend>ما التحديات التي ترى أن اللجنة اللوجستية يجب أن تبدأ بمعالجتها بشكل عاجل؟</legend>
+          <div class="options-grid">
+            <label class="option-card">
+              <input type="radio" name="committeePriorities" value="high">
+              <span>عالي</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="committeePriorities" value="medium">
+              <span>متوسط</span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="committeePriorities" value="low">
+              <span>منخفض</span>
+            </label>
+          </div>
+        </fieldset>
         <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
@@ -445,7 +481,7 @@
       </div>
 
       <div class="step">
-  <h3>بيانات التواصل (اختياري)</h3>
+  <h3>بيانات التواصل (إجباري)</h3>
 
   <input
     type="text"
@@ -453,6 +489,7 @@
     name="companyName"
     placeholder="اسم المنشأة"
     autocomplete="organization"
+    required
   >
 
   <input
@@ -461,7 +498,19 @@
     name="phoneNumber"
     placeholder="رقم الجوال"
     autocomplete="tel"
+    required
   >
+
+  <input
+    type="email"
+    id="contactEmail"
+    name="contactEmail"
+    placeholder="البريد الإلكتروني"
+    autocomplete="email"
+    required
+  >
+
+  <p class="error-message"></p>
 
   <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
 
