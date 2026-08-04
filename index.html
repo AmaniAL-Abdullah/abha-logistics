@@ -2,6 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <script>
+    if (location.hash === '#form-card') {
+      history.replaceState(null, '', location.pathname + location.search);
+      var resetScroll = function () { window.scrollTo(0, 0); };
+      resetScroll();
+      document.addEventListener('DOMContentLoaded', resetScroll);
+      window.addEventListener('load', resetScroll);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +50,7 @@
 
         <div class="hero-stats">
           <div class="stat">يستغرق أقل من 5 دقائق</div>
-          <div class="stat">18 أسئلة قصيرة</div>
+          <div class="stat">19 سؤالًا</div>
           <div class="stat">سرية وخصوصية تامة</div>
         </div>
 
@@ -58,7 +67,7 @@
       <div class="progress-wrapper">
         <div class="progress-info">
           <span id="current-step">1</span>
-          <span id="total-step">17</span>
+          <span id="total-step">19</span>
         </div>
         <div class="progress-track">
           <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="6"></div>
@@ -98,7 +107,7 @@
 
         <div id="otherActivityBox" hidden>
           <label for="otherActivityInput" class="visually-hidden">أخرى</label>
-          <input type="text" id="otherActivityInput" placeholder="اكتب نشاط المنشأة">
+          <input type="text" id="otherActivityInput" name="activityOther" placeholder="اكتب نشاط المنشأة">
         </div>
         <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
@@ -109,13 +118,13 @@
         <input type="text" id="mainCity" aria-labelledby="mainCity-label" placeholder="اكتب اسم المدينة">
         <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
-        <button type="button" class="prev"><span class="arrow">›</span> السابق</button>
+        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
 
       <div class="step">
         <fieldset>
           <legend>ما أبرز التحديات التي تواجه منشأتك في القطاع اللوجستي؟</legend>
-          <p class="hint"> (يمكنك الاختيار حتى 5 خيارات)</p>
+          <p class="hint"> يمكن اختيار أكثر من إجابة</p>
           <div class="options-grid">
             <label class="option-card">
               <input type="checkbox" name="challenges" value="high-operating-costs">
@@ -162,8 +171,57 @@
 
         <div id="otherChallengeBox" hidden>
           <label for="otherChallengeInput" class="visually-hidden">أخرى</label>
-          <input type="text" id="otherChallengeInput" placeholder="اذكر التحدي">
+          <input type="text" id="otherChallengeInput" name="challengesOther" placeholder="اذكر التحدي">
         </div>
+        <p class="error-message"></p>
+        <button type="button" class="next">التالي <span class="arrow">›</span></button>
+        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
+      </div>
+
+      <div class="step">
+        <fieldset>
+          <legend>ما أبرز التكاليف التشغيلية تأثيرًا على منشأتك؟</legend>
+          <p class="hint">يمكن اختيار أكثر من إجابة</p>
+          <div class="options-grid">
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="fuel-and-shipping">
+              <span>الوقود والشحن</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="wages-and-operational-staff">
+              <span>الأجور والكوادر التشغيلية</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="warehouse-and-facility-rent">
+              <span>إيجارات المستودعات والمرافق</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="vehicle-maintenance-and-insurance">
+              <span>صيانة وتأمين المركبات</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="licenses-and-government-fees">
+              <span>التراخيص والرسوم الحكومية</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="tech-systems-and-tracking">
+              <span>الأنظمة التقنية والتتبع</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="packaging-and-outsourced-services">
+              <span>التعبئة والتغليف والخدمات الخارجية</span>
+            </label>
+            <label class="option-card">
+              <input type="checkbox" name="operatingCostsImpact" value="other" id="otherOperatingCostsImpact">
+              <span>أخرى</span>
+            </label>
+          </div>
+        </fieldset>
+        <div id="otherOperatingCostsImpactBox" hidden>
+          <label for="otherOperatingCostsImpactInput" class="visually-hidden">أخرى</label>
+          <input type="text" id="otherOperatingCostsImpactInput" name="operatingCostsImpactOther" placeholder="اذكر التكلفة">
+        </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -194,6 +252,10 @@
               <span>الهيئة السعودية للمياه</span>
             </label>
             <label class="option-card">
+              <input type="checkbox" name="authority" value="saso">
+              <span>الهيئة السعودية للمواصفات والمقاييس والجودة</span>
+            </label>
+            <label class="option-card">
               <input type="checkbox" name="authority" value="other" id="otherAuthority">
               <span>أخرى</span>
             </label>
@@ -201,8 +263,9 @@
         </fieldset>
         <div id="otherAuthorityBox" hidden>
           <label for="otherAuthorityInput" class="visually-hidden">أخرى</label>
-          <input type="text" id="otherAuthorityInput" placeholder="اذكر الجهة">
+          <input type="text" id="otherAuthorityInput" name="authorityOther" placeholder="اذكر الجهة">
         </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -224,8 +287,9 @@
 
         <div id="recruitmentDifficultyReasonBox" hidden>
           <label for="recruitmentDifficultyReasonInput" class="visually-hidden">السبب</label>
-          <input type="text" id="recruitmentDifficultyReasonInput" placeholder="اذكر السبب">
+          <input type="text" id="recruitmentDifficultyReasonInput" name="recruitmentDifficultyReason" placeholder="اذكر السبب">
         </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -247,8 +311,9 @@
 
         <div id="infrastructureServesSectorReasonBox" hidden>
           <label for="infrastructureServesSectorReasonInput" class="visually-hidden">السبب</label>
-          <input type="text" id="infrastructureServesSectorReasonInput" placeholder="اذكر السبب">
+          <input type="text" id="infrastructureServesSectorReasonInput" name="infrastructureServesSectorReason" placeholder="اذكر السبب">
         </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -305,8 +370,9 @@
 
         <div id="warehouseLandDifficultyReasonBox" hidden>
           <label for="warehouseLandDifficultyReasonInput" class="visually-hidden">السبب</label>
-          <input type="text" id="warehouseLandDifficultyReasonInput" placeholder="اذكر السبب">
+          <input type="text" id="warehouseLandDifficultyReasonInput" name="warehouseLandDifficultyReason" placeholder="اذكر السبب">
         </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -336,10 +402,19 @@
               <input type="checkbox" name="lastMileChallenges" value="no-flexible-system">
               <span>عدم وجود نظام مرن</span>
             </label>
+            <label class="option-card">
+              <input type="checkbox" name="lastMileChallenges" value="other" id="otherLastMileChallenges">
+              <span>أخرى</span>
+            </label>
           </div>
         </fieldset>
+        <div id="otherLastMileChallengesBox" hidden>
+          <label for="otherLastMileChallengesInput" class="visually-hidden">أخرى</label>
+          <input type="text" id="otherLastMileChallengesInput" name="lastMileChallengesOther" placeholder="اذكر التحدي">
+        </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
-        <button type="button" class="prev"><span class="arrow">›</span> السابق</button>
+        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
 
       <div class="step">
@@ -359,8 +434,9 @@
 
         <div id="digitalSystemsMeetNeedsReasonBox" hidden>
           <label for="digitalSystemsMeetNeedsReasonInput" class="visually-hidden">السبب</label>
-          <input type="text" id="digitalSystemsMeetNeedsReasonInput" placeholder="اذكر السبب">
+          <input type="text" id="digitalSystemsMeetNeedsReasonInput" name="digitalSystemsMeetNeedsReason" placeholder="اذكر السبب">
         </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -417,8 +493,17 @@
               <input type="checkbox" name="investmentChallenges" value="limited-data-no-provider">
               <span>محدودية البيانات (لا يوجد مقدم خدمة)</span>
             </label>
+            <label class="option-card">
+              <input type="checkbox" name="investmentChallenges" value="other" id="otherInvestmentChallenges">
+              <span>أخرى</span>
+            </label>
           </div>
         </fieldset>
+        <div id="otherInvestmentChallengesBox" hidden>
+          <label for="otherInvestmentChallengesInput" class="visually-hidden">أخرى</label>
+          <input type="text" id="otherInvestmentChallengesInput" name="investmentChallengesOther" placeholder="اذكر التحدي">
+        </div>
+        <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
         <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
@@ -428,7 +513,7 @@
         <textarea name="biggestChallenge" rows="6" aria-labelledby="biggestChallenge-label" placeholder="اكتب إجابتك هنا..." required ></textarea>
         <p class="error-message"></p>
         <button type="button" class="next">التالي <span class="arrow">›</span></button>
-        <button type="button" class="prev"><span class="arrow">›</span> السابق</button>
+        <button type="button" class="prev"><span class="arrow">‹</span> السابق</button>
       </div>
 
       <div class="step">

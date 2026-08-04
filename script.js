@@ -88,11 +88,14 @@ function goNext() {
 
   wireOtherToggle("otherActivity", "otherActivityBox");
   wireOtherToggle("otherChallenge", "otherChallengeBox");
+  wireOtherToggle("otherOperatingCostsImpact", "otherOperatingCostsImpactBox");
   wireOtherToggle("otherAuthority", "otherAuthorityBox");
   wireOtherToggle("recruitmentDifficultyNo", "recruitmentDifficultyReasonBox");
   wireOtherToggle("infrastructureServesSectorNo", "infrastructureServesSectorReasonBox");
   wireOtherToggle("warehouseLandDifficultyNo", "warehouseLandDifficultyReasonBox");
   wireOtherToggle("digitalSystemsMeetNeedsNo", "digitalSystemsMeetNeedsReasonBox");
+  wireOtherToggle("otherLastMileChallenges", "otherLastMileChallengesBox");
+  wireOtherToggle("otherInvestmentChallenges", "otherInvestmentChallengesBox");
 
   function limitCheckboxGroup(name, max) {
     const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
@@ -169,6 +172,13 @@ function goNext() {
         return;
       }
     }
+
+    // كل عمليات التحقق نجحت — جمع بيانات الاستبيان كاملة في مكان واحد
+    // تمهيدًا للربط مع Google Forms لاحقًا.
+    const formData = new FormData(form);
+
+    // TODO: عند توفر رابط Google Forms، أضف هنا كود الإرسال، مثال:
+    // fetch(GOOGLE_FORM_URL, { method: "POST", mode: "no-cors", body: formData });
 
     formCard.style.display = "none";
     thankYou.classList.add("active");
