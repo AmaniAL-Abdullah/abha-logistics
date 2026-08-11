@@ -187,32 +187,6 @@ function goNext() {
   restartBtn.addEventListener("click", () => {
     window.location.replace(window.location.pathname);
   });
-
-  const hero = document.querySelector(".hero");
-  const startBtn = document.querySelector(".hero-btn");
-
-  function enterSurvey() {
-    hero.classList.add("is-hidden");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    history.pushState({ survey: true }, "", "#form-card");
-  }
-
-  function exitSurvey() {
-    hero.classList.remove("is-hidden");
-    formCard.style.display = "";
-    thankYou.classList.remove("active");
-    currentStep = 0;
-    renderStep();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  startBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    enterSurvey();
-  });
-
-  window.addEventListener("popstate", exitSurvey);
-
   renderStep();
 })();
 
